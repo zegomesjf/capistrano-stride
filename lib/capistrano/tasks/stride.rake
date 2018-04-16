@@ -87,7 +87,7 @@ end
 
 namespace :load do
   task :defaults do
-    require 'net/https'
+    require 'net/http'
     require 'uri'
     require 'json'
 
@@ -98,7 +98,7 @@ namespace :load do
         'Authorization': "Bearer #{fetch(:stride_token)}"
     }
 
-    set(:http, -> { Net::HTTPS.new(uri.host, uri.port) })
-    set(:request, -> { Net::HTTPS::Post.new(uri.request_uri, header) })
+    set(:http, -> { Net::HTTP.new(uri.host, uri.port) })
+    set(:request, -> { Net::HTTP::Post.new(uri.request_uri, header) })
   end
 end

@@ -6,8 +6,8 @@ require 'capistrano/stride/version'
 Gem::Specification.new do |spec|
   spec.name = "capistrano-stride"
   spec.version = Capistrano::Stride::VERSION
-  spec.authors = ["Arsen Bespalov"]
-  spec.email = ["a@spadix.ru"]
+  spec.author = "Arsen Bespalov"
+  spec.email = "a@spadix.ru"
   spec.description = %q{Notify to Stride about deployments}
   spec.summary = %Q{Notifies in a Stride room about a new deployment showing the git log\nfor the latests commits inclided in the current deploy.}
   spec.homepage = ""
