@@ -1,5 +1,8 @@
 # Capistrano::Stride
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/2aa1419d1454294270fb/maintainability)](https://codeclimate.com/github/ArsenBespalov/capistrano-stride/maintainability)
+[![Build Status](https://travis-ci.org/ArsenBespalov/capistrano-stride.svg?branch=master)](https://travis-ci.org/ArsenBespalov/capistrano-stride)
+
 Notifies in a Stride room about a new deployment showing the git log for the latest 
 commits included in the current deploy.
 
