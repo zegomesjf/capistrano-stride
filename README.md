@@ -1,5 +1,6 @@
 # Capistrano::Stride
 
+[![Gem Version](https://badge.fury.io/rb/capistrano-stride.svg)](https://badge.fury.io/rb/capistrano-stride)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2aa1419d1454294270fb/maintainability)](https://codeclimate.com/github/ArsenBespalov/capistrano-stride/maintainability)
 [![Build Status](https://travis-ci.org/ArsenBespalov/capistrano-stride.svg?branch=master)](https://travis-ci.org/ArsenBespalov/capistrano-stride)
 
