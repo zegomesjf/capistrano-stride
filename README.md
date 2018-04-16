@@ -13,7 +13,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 group :deployment do
-    gem 'capistrano-stride'
+    gem 'capistrano-stride', '~> 0.1'
 end
 ```
 
