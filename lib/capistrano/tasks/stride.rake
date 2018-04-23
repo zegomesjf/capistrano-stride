@@ -26,7 +26,10 @@ namespace :stride do
         ]
     }
 
-    fetch(:client).send_message(message_body)
+    fetch(:req).body = {
+        body: message_body
+    }
+    fetch(:https).request(:req)
   end
 
   task :notify_deploy_started do
@@ -67,7 +70,10 @@ namespace :stride do
         ]
     }
 
-    fetch(:client).send_message(message_body)
+    fetch(:req).body = {
+        body: message_body
+    }
+    fetch(:https).request(:req)
   end
 
   task :notify_deploy_finished do
@@ -98,7 +104,10 @@ namespace :stride do
         ]
     }
 
-    fetch(:client).send_message(message_body)
+    fetch(:req).body = {
+        body: message_body
+    }
+    fetch(:https).request(:req)
   end
 
   before "deploy:updated", "stride:notify_deploy_started"
@@ -108,8 +117,19 @@ end
 
 namespace :load do
   task :defaults do
-    require 'stride'
+    require 'uri'
+    require 'net/http'
+    require 'net/https'
+    require 'json'
 
-    set(:client, -> {Stride::Client.new(fetch(:cloud_id), fetch(:conversation_id))})
+    uri = URI.parse(fetch(:stride_url))
+    set(:https, -> { Net::HTTP.new(uri.host, uri.port) })
+    :https.use_ssl = true
+    header = {
+        'Content-Type' => 'application/json',
+        'Authorization' => "Bearer #{fetch(:stride_token)}"
+    }
+
+    set(:req, -> { Net::HTTP::Post.new(uri.path, header) })
   end
 end

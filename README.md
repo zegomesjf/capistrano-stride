@@ -45,8 +45,8 @@ Then you need to configure you Stride token and the room URL you want to notify 
 the new deployment
 
 ```ruby
-set :stride_token, "YOUR TOKEN"
 set :stride_url, "https://api.atlassian.com/site/site_id/conversation/conversation_id/message"
+set :stride_token, "STRIDE_ACCESS_TOKEN"
 ```
 
 ## Contributing
