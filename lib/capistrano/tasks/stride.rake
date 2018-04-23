@@ -123,8 +123,9 @@ namespace :load do
     require 'json'
 
     uri = URI.parse(fetch(:stride_url))
-    set(:https, -> { Net::HTTP.new(uri.host, uri.port) })
-    :https.use_ssl = true
+    https = Net::HTTP.new(uri.host, uri.port)
+    https.use_ssl = true
+    set(:https, -> { https })
     header = {
         'Content-Type' => 'application/json',
         'Authorization' => "Bearer #{fetch(:stride_token)}"
