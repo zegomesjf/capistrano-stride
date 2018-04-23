@@ -13,7 +13,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 group :deployment do
-    gem 'capistrano-stride', '~> 0.1'
+    gem 'capistrano-stride', '~> 0.2'
 end
 ```
 
@@ -48,6 +48,10 @@ the new deployment
 set :stride_url, "https://api.atlassian.com/site/site_id/conversation/conversation_id/message"
 set :stride_token, "STRIDE_ACCESS_TOKEN"
 ```
+
+For get Stride URL and access token you need add custom app with API tokens, 
+without installation application. Just only enter specify a token name. Simple and Easy!
+
 
 ## Contributing
 
