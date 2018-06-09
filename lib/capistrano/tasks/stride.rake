@@ -30,7 +30,7 @@ namespace :stride do
   after "deploy:finished", "stride:notify_deploy_finished"
   before "deploy:reverted", "stride:notify_deploy_failed"
 
-  def send(message = '', status = 'inprogress')
+  def send(stride_url, stride_token, message = '', status = 'inprogress')
     @status = status
     @message = message
     if status == 'inprogress'
@@ -44,12 +44,12 @@ namespace :stride do
       @status_text = 'Unknown'
     end
 
-    uri = URI.parse(fetch(:stride_url))
+    uri = URI.parse(stride_url)
     https = Net::HTTP.new(uri.host, uri.port)
     https.use_ssl = true
     header = {
         'Content-Type' => 'application/json',
-        'Authorization' => "Bearer #{fetch(:stride_token)}"
+        'Authorization' => "Bearer #{stride_token}"
     }
     req = Net::HTTP::Post.new(uri.path, header)
     req.body = body.to_json
