@@ -6,18 +6,24 @@ require 'json'
 namespace :stride do
   task :notify_deploy_failed do
     message = "#{fetch(:local_user, local_user).strip} cancelled deployment of #{fetch(:application)} to #{fetch(:stage)}."
-    send(message, 'removed')
+    url = fetch(:stride_url)
+    token = fetch(:stride_token)
+    send(url, token, message, 'removed')
   end
 
   task :notify_deploy_started do
     commits = `git log --no-color --max-count=5 --pretty=format:' - %an: %s' --abbrev-commit --no-merges #{fetch(:previous_revision, "HEAD")}..#{fetch(:current_revision, "HEAD")}`
     message = "#{fetch(:local_user, local_user).strip} is deploying #{fetch(:application)} to #{fetch(:stage)} \n\n#{commits}"
-    send(message)
+    url = fetch(:stride_url)
+    token = fetch(:stride_token)
+    send(url, token, message)
   end
 
   task :notify_deploy_finished do
     message = "#{fetch(:local_user, local_user).strip} finished deploying #{fetch(:application)} to #{fetch(:stage)}."
-    send(message, 'success')
+    url = fetch(:stride_url)
+    token = fetch(:stride_token)
+    send(url, token, message, 'success')
   end
 
   before "deploy:updated", "stride:notify_deploy_started"
