@@ -7,6 +7,8 @@
 Notifies in a Stride room about a new deployment showing the git log for the latest 
 commits included in the current deploy.
 
+![](https://raw.githubusercontent.com/ArsenBespalov/capistrano-stride/master/screenshot.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
