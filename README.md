@@ -13,7 +13,7 @@ Add this line to your application's Gemfile:
 
 ```ruby
 group :deployment do
-    gem 'capistrano-stride', '~> 0.2', require: false
+    gem 'capistrano-stride', '~> 0.3', require: false
 end
 ```
 
@@ -45,7 +45,7 @@ Then you need to configure you Stride token and the room URL you want to notify 
 the new deployment
 
 ```ruby
-set :stride_url, "https://api.atlassian.com/site/site_id/conversation/conversation_id/message"
+set :stride_url, "https://api.atlassian.com/site/SITE_ID/conversation/CONVERSATION_ID/message"
 set :stride_token, "STRIDE_ACCESS_TOKEN"
 ```
 
