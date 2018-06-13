@@ -17,8 +17,8 @@ module Capistrano::Stride::Client
     https = Net::HTTP.new(uri.host, uri.port)
     https.use_ssl = true
     header = {
-        'Content-Type' => 'application/json',
-        'Authorization' => "Bearer #{stride_token}"
+      'Content-Type' => 'application/json',
+      'Authorization' => "Bearer #{stride_token}"
     }
     req = Net::HTTP::Post.new(uri.path, header)
     req.body = body.to_json
@@ -27,33 +27,33 @@ module Capistrano::Stride::Client
 
   def self.body
     {
-        body: {
-            version: 1,
-            type: 'doc',
-            content: [
+      body: {
+        version: 1,
+        type: 'doc',
+        content: [
+          {
+            type: 'applicationCard',
+            attrs: {
+              text: @message,
+              collapsible: true,
+              title: {
+                text: 'Deployment Status'
+              },
+              description: {
+                text: @message
+              },
+              details: [
                 {
-                    type: 'applicationCard',
-                    attrs: {
-                        text: @message,
-                        collapsible: true,
-                        title: {
-                            text: 'Deployment Status'
-                        },
-                        description: {
-                            text: @message
-                        },
-                        details: [
-                            {
-                                lozenge: {
-                                    text: @status_text,
-                                    appearance: @status
-                                }
-                            }
-                        ]
-                    }
+                  lozenge: {
+                    text: @status_text,
+                    appearance: @status
+                  }
                 }
-            ]
-        }
+              ]
+            }
+          }
+        ]
+      }
     }
   end
 end
