@@ -8,7 +8,7 @@ namespace :stride do
     message = "#{fetch(:local_user, local_user).strip} cancelled deployment of #{fetch(:application)} to #{fetch(:stage)}."
     url = fetch(:stride_url)
     token = fetch(:stride_token)
-    send(url, token, message, 'removed')
+    execute(url, token, message, 'removed')
   end
 
   task :notify_deploy_started do
@@ -16,21 +16,21 @@ namespace :stride do
     message = "#{fetch(:local_user, local_user).strip} is deploying #{fetch(:application)} to #{fetch(:stage)} \n\n#{commits}"
     url = fetch(:stride_url)
     token = fetch(:stride_token)
-    send(url, token, message)
+    execute(url, token, message)
   end
 
   task :notify_deploy_finished do
     message = "#{fetch(:local_user, local_user).strip} finished deploying #{fetch(:application)} to #{fetch(:stage)}."
     url = fetch(:stride_url)
     token = fetch(:stride_token)
-    send(url, token, message, 'success')
+    execute(url, token, message, 'success')
   end
 
   before "deploy:updated", "stride:notify_deploy_started"
   after "deploy:finished", "stride:notify_deploy_finished"
   before "deploy:reverted", "stride:notify_deploy_failed"
 
-  def send(stride_url, stride_token, message = '', status = 'inprogress')
+  def execute(stride_url, stride_token, message = '', status = 'inprogress')
     @status = status
     @message = message
     if status == 'inprogress'
