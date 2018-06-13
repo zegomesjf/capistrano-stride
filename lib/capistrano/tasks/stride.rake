@@ -27,7 +27,7 @@ namespace :stride do
     Capistrano::Stride::Client.execute(url, token, message, 'success')
   end
 
-  before "deploy:updated", "stride:notify_deploy_started"
+  after "deploy:set_rails_env", "stride:notify_deploy_started"
   after "deploy:finished", "stride:notify_deploy_finished"
   before "deploy:reverted", "stride:notify_deploy_failed"
 end
